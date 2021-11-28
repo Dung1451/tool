@@ -61,6 +61,7 @@ def tool_like_function():
   write(v+"Tên tài khoản: "+user)
   write(v+"Xu trong tài khoản: "+xu)
   print(f) 
+  dl=int(input(xb+"Time Delay >> "))
   check_token = json.loads(requests.get('https://graph.facebook.com/me/?access_token='+tokenfb).text)
   if "id" in check_token:
         idfb = check_token['id']
