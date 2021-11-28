@@ -81,6 +81,11 @@ def tool_like_function():
   print(f)
   dem=0
   while True:
+    if while == 0
+      print("đang hết job")
+      time.sleep(3)
+    else:
+      print("lỗi")
           t=datetime.datetime.now().strftime("%X")
           dem=dem+1 
           getlike=requests.get('https://traodoisub.com/api/?fields=like&access_token='+tokentds)
