@@ -80,21 +80,21 @@ def tool_like_function():
         os.sys.exit()
   print(f)
   dem=0
-  while True:
-        if True == 0:
-          print("đang hết job")
-          time.sleep(3)
-        else:
-          t=datetime.datetime.now().strftime("%X")
-          dem=dem+1 
-          getlike=requests.get('https://traodoisub.com/api/?fields=like&access_token='+tokentds)
-          idlike=getlike.json()[0]['id']
-          urllike='https://graph.facebook.com/'+str(idlike)+'/likes'
-          datalike="access_token="+tokenfb
-          like=requests.post(urllike, data=datalike)
-          nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=LIKE&id='+str(idlike)+'&access_token='+tokentds).text)
-          id=idlike[0:15]
-          if "success" in nhan:
+  t=datetime.datetime.now().strftime("%X")
+  dem=dem+1 
+  getlike=requests.get('https://traodoisub.com/api/?fields=like&access_token='+tokentds)
+  getlike = True
+  while getlike:
+    if getlike == 0:
+      continue
+    
+    idlike=getlike.json()[0]['id']
+    urllike='https://graph.facebook.com/'+str(idlike)+'/likes'
+    datalike="access_token="+tokenfb
+    like=requests.post(urllike, data=datalike)
+    nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=LIKE&id='+str(idlike)+'&access_token='+tokentds).text)
+    id=idlike[0:15]
+    if "success" in nhan:
                 write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m LIKE >\x1b[1;95m {id} >\x1b[1;93m +300 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
                 for demtg in range(dl, -1, -1):
                     print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
