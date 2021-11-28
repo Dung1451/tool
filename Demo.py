@@ -96,6 +96,7 @@ def tool_like_function():
                     time.sleep(1)
           else:
             print(d+'Lỗi '+id,end='\r')
+menu()
               
     
     
