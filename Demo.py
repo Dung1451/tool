@@ -99,8 +99,8 @@ def tool_like_function():
                 for demtg in range(dl, -1, -1):
                     print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
                     time.sleep(1)
-          else:
-            print(d+'Lỗi '+id,end='\r')
+    else:
+        print(d+'Lỗi '+id,end='\r')
 menu()
               
     
