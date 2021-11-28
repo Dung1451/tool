@@ -39,7 +39,7 @@ def menu():
     print(d+"Nhập sai!")
     time.sleep(3)
     os.system('clear')
-#tool Like
+#tool Like 
 def tool_like_function():
   os.system('clear')
   print(banner)
@@ -84,7 +84,7 @@ def tool_like_function():
           dem=dem+1 
           getlike=requests.get('https://traodoisub.com/api/?fields=like&access_token='+tokentds)
           idlike=getlike.json()[0]['id']
-          urllike='https://graph.facebook.com/'+str(idfolow)+'/likes'
+          urllike='https://graph.facebook.com/'+str(idlike)+'/likes'
           datalike="access_token="+tokenfb
           like=requests.post(urllike, data=datalike)
           nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=LIKE&id='+str(idlike)+'&access_token='+tokentds).text)
