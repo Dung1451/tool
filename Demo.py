@@ -34,7 +34,7 @@ def menu():
   if nhap == '1' or nhap == '01':
     tool_like_function()
   elif nhap == '2' or nhap == '02':
-    tool_follow_function
+    tool_follow_function()
   else:
     print(d+"Nhập sai!")
     time.sleep(3)
