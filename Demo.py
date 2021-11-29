@@ -46,7 +46,7 @@ def tool_like_function():
   print(f)
   print(v+"Job bạn chọn: Like")
   tokentds = input(vio+"nhập token TDS: ")
-  tokenfb = input(vio+"Nhập token TDS: ")
+  tokenfb = input(vio+"Nhập token FB: ")
   time.sleep(1)
   log = json.loads(requests.get('https://traodoisub.com/api/?fields=profile&access_token='+tokentds).text)
   if 'success'in log:
@@ -82,11 +82,8 @@ def tool_like_function():
   dem=0
   t=datetime.datetime.now().strftime("%X")
   dem=dem+1 
-  getlike=requests.get('https://traodoisub.com/api/?fields=like&access_token='+tokentds)
-  getlike = True
-  while getlike:
-    if getlike == 0:
-      continue
+  while True:
+    getlike=requests.get('https://traodoisub.com/api/?fields=like&access_token='+tokentds)
     
     idlike=getlike.json()[0]['id']
     urllike='https://graph.facebook.com/'+str(idlike)+'/likes'
@@ -102,9 +99,60 @@ def tool_like_function():
     else:
         print(d+'Lỗi '+id,end='\r')
 menu()
-              
-    
-    
-    
-
+def tool_follow_function():
+  os.system('clear')
+  print(banner) 
+  print(f) 
+  print(v+"Job bạn chọn: Like")
+  tokentds = input(vio+"nhập token TDS: ")
+  tokenfb = input(vio+"Nhập token FB: ")
+  time.sleep(1)
+  log = json.loads(requests.get('https://traodoisub.com/api/?fields=profile&access_token='+tokentds).text)
+  if 'success'in log:
+    user=log['data']['user']
+    xu=log['data']['xu']
+    print(xl+"Đăng nhập thành công!! ")
+  else:
+    print(d+"Lỗi token")
+    os.system('clear')
+  write(v+"Tên tài khoản: "+user) 
+  write(v+"Xu trong tài khoản: "+xu) 
+  print(f) 
+  dl=int(input(xb+"Time Delay >> "))
+  check_token = json.loads(requests.get('https://graph.facebook.com/me/?access_token='+tokenfb).text)
+  if "id" in check_token:
+        idfb = check_token['id']
+        namefb = check_token['name']
+        run = json.loads(requests.get('https://traodoisub.com/api/?fields=run&id='+str(idfb)+'&access_token='+tokentds).text)
+        if "success" in run:
+            print(f)
+            print(xl+'Đang cấu hình id: '+str(idfb)+' | '+str(namefb)+'')
+        else:
+            print(d+"Nhập lỗi!")
+            time.sleep(3)
+            os.sys.exit()
+  else:
+        print(d+"Token lỗi! ")
+        time.sleep(3)
+        os.sys.exit()
+  print(f)
+  dem=0
+  t=datetime.datetime.now().strftime("%X")
+  dem=dem+1 
+  while True:
+    getfollow=requests.get('https://traodoisub.com/api/?fields=follow&access_token='+tokentds) 
+    idfollow=getlike.json()[0]['id']
+    urlfollow='https://graph.facebook.com/'+str(idfollow)+'/likes'
+    datafollow="access_token="+tokenfb
+    follow=requests.post(urlfollow, data=datafollow)
+    nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=FOLLOW&id='+str(idlike)+'&access_token='+tokentds).text)
+    id=idfollow[0:15]
+    if "success" in nhan:
+                write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m Folow >\x1b[1;95m {id} >\x1b[1;93m +600 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
+                for demtg in range(dl, -1, -1):
+                    print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
+                    time.sleep(1)
+    else:
+        print(d+'Lỗi '+id,end='\r')
+menu()
   
