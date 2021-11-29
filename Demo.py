@@ -98,12 +98,13 @@ def tool_like_function():
                     time.sleep(1)
     else:
         print(d+'Lỗi '+id,end='\r')
-menu()
+        menu()
+#tool follow
 def tool_follow_function():
   os.system('clear')
   print(banner) 
   print(f) 
-  print(v+"Job bạn chọn: Like")
+  print(v+"Job bạn chọn: Follow")
   tokentds = input(vio+"nhập token TDS: ")
   tokenfb = input(vio+"Nhập token FB: ")
   time.sleep(1)
