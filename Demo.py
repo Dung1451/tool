@@ -142,7 +142,7 @@ def tool_follow_function():
   dem=dem+1 
   while True:
     getfollow=requests.get('https://traodoisub.com/api/?fields=follow&access_token='+tokentds) 
-    idfollow=getlike.json()[0]['id']
+    idfollow=getfollow.json()[0]['id']
     urlfollow='https://graph.facebook.com/'+str(idfollow)+'/likes'
     datafollow="access_token="+tokenfb
     follow=requests.post(urlfollow, data=datafollow)
@@ -155,5 +155,6 @@ def tool_follow_function():
                     time.sleep(1)
     else:
         print(d+'Lỗi '+id,end='\r')
+        menu()
 menu()
   
