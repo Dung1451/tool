@@ -98,7 +98,6 @@ def tool_like_function():
                     time.sleep(1)
     else:
         print(d+'Lỗi '+id,end='\r')
-        menu()
 #tool follow
 def tool_follow_function():
   os.system('clear')
@@ -155,6 +154,5 @@ def tool_follow_function():
                     time.sleep(1)
     else:
         print(d+'Lỗi '+id,end='\r')
-        menu()
 menu()
   
