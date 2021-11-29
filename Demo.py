@@ -30,11 +30,14 @@ def menu():
   time.sleep(0.1)
   write("[1]Like")
   write("[2]Follow")
+  write("[3]Reaction")
   nhap = input("nhập job muốn chạy: ")
   if nhap == '1' or nhap == '01':
     tool_like_function()
   elif nhap == '2' or nhap == '02':
     tool_follow_function()
+  elif nhap == '3' or nhap == '03':
+    tool_reaction_function()
   else:
     print(d+"Nhập sai!")
     time.sleep(3)
@@ -148,11 +151,65 @@ def tool_follow_function():
     nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=FOLLOW&id='+str(idfollow)+'&access_token='+tokentds).text)
     id=idfollow[0:15]
     if "success" in nhan:
-                write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m Folow >\x1b[1;95m {id} >\x1b[1;93m +600 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
+                write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m Follow >\x1b[1;95m {id} >\x1b[1;93m +600 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
+                for demtg in range(dl, -1, -1):
+                    print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
+                    time.sleep(1)
+    else:
+        print(d+'Lỗi '+id,end='\r')
+#tool reaction
+def tool_reaction_function():
+  os.system('clear')
+  print(banner) 
+  write(xl+"Job bạn chọn: Reaction")
+  tokentds = input(vio+"nhập token TDS: ")
+  tokenfb = input(vio+"Nhập token FB: ")
+  time.sleep(1)
+  log = json.loads(requests.get('https://traodoisub.com/api/?fields=profile&access_token='+tokentds).text)
+  if 'success'in log:
+    user=log['data']['user']
+    xu=log['data']['xu']
+    print(xl+"Đăng nhập thành công!! ")
+  else:
+    print(d+"Lỗi token")
+    os.system('clear')
+  write(v+"Tên tài khoản: "+user) 
+  write(v+"Xu trong tài khoản: "+xu) 
+  print(f) 
+  dl=int(input(xb+"Time Delay: "))
+  check_token = json.loads(requests.get('https://graph.facebook.com/me/?access_token='+tokenfb).text)
+  if "id" in check_token:
+        idfb = check_token['id']
+        namefb = check_token['name']
+        run = json.loads(requests.get('https://traodoisub.com/api/?fields=run&id='+str(idfb)+'&access_token='+tokentds).text)
+        if "success" in run:
+            print(f)
+            print(xl+'Đang cấu hình id: '+str(idfb)+' | '+str(namefb)+'')
+        else:
+            print(d+"Nhập lỗi!")
+            time.sleep(3)
+            os.sys.exit()
+  else:
+        print(d+"Token lỗi! ")
+        time.sleep(3)
+        os.sys.exit()
+  print(f)
+  dem=0
+  t=datetime.datetime.now().strftime("%X")
+  dem=dem+1 
+  while True:
+    getreaction=requests.get('https://traodoisub.com/api/?fields=reaction&access_token='+tokentds) 
+    idreaction=getreaction.json()[0]['id']
+    urlreaction='https://graph.facebook.com/'+str(idreaction)+'/reactions'
+    datareaction="access_token="+tokenfb
+    reaction=requests.post(urlreaction, data=datareaction)
+    nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=LIKE&id='+(idreaction)+'&access_token='+tokentds).text)
+    id=idreaction[0:15]
+    if "success" in nhan:
+                write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m Reaction >\x1b[1;95m {id} >\x1b[1;93m +400 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
                 for demtg in range(dl, -1, -1):
                     print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
                     time.sleep(1)
     else:
         print(d+'Lỗi '+id,end='\r')
 menu()
-  
