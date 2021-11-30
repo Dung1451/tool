@@ -203,7 +203,7 @@ def tool_reaction_function():
     urlreaction='https://graph.facebook.com/'+str(idreaction)+'/reactions'
     datareaction="access_token="+tokenfb
     reaction=requests.post(urlreaction, data=datareaction)
-    nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=LIKE&id='+(idreaction)+'&access_token='+tokentds).text)
+    nhan=json.loads(requests.get('https://traodoisub.com/api/coin/?type=LOVE&id='+(idreaction)+'&access_token='+tokentds).text)
     id=idreaction[0:15]
     if "success" in nhan:
                 write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m Reaction >\x1b[1;95m {id} >\x1b[1;93m +400 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
