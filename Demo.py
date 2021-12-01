@@ -31,6 +31,7 @@ def menu():
   write("[1]Like")
   write("[2]Follow")
   write("[3]Reaction")
+  write("[4]Comment")
   nhap = input("nhập job muốn chạy: ")
   if nhap == '1' or nhap == '01':
     tool_like_function()
@@ -38,6 +39,8 @@ def menu():
     tool_follow_function()
   elif nhap == '3' or nhap == '03':
     tool_reaction_function()
+  elif nhap == '4' or nhap == '04':
+    tool_cmt_function()
   else:
     print(d+"Nhập sai!")
     time.sleep(3)
@@ -207,6 +210,64 @@ def tool_reaction_function():
     id=idreaction[0:15]
     if "success" in nhan:
                 write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m Reaction >\x1b[1;95m {id} >\x1b[1;93m +400 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
+                for demtg in range(dl, -1, -1):
+                    print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
+                    time.sleep(1)
+    else:
+        print(d+'Lỗi '+id,end='\r')
+def tool_cmt_function():
+  os.system('clear')
+  print(banner) 
+  write(f) 
+  write(xl+"Job bạn chọn: Comment")
+  write(f) 
+  tokentds = input(vio+"Nhập token tđs: ")
+  tokenfb = input(vio+"Nhập token FB: ")
+  time.sleep(1)
+  log = json.loads(requests.get('https://traodoisub.com/api/?fields=profile&access_token='+tokentds).text)
+  if 'success'in log:
+    user=log['data']['user']
+    xu=log['data']['xu']
+    print(f) 
+    print(xl+"Đăng nhập thành công")
+  else:
+    print(d+"Nhập sai")
+    os.system('clear')
+  print(f) 
+  write(v+"Tên tài khoản: "+user)
+  write(v+"Xu trong tài khoản: "+xu)
+  print(f) 
+  dl=int(input(xb+"Time Delay >> "))
+  check_token = json.loads(requests.get('https://graph.facebook.com/me/?access_token='+tokenfb).text)
+  if "id" in check_token:
+        idfb = check_token['id']
+        namefb = check_token['name']
+        run = json.loads(requests.get('https://traodoisub.com/api/?fields=run&id='+str(idfb)+'&access_token='+tokentds).text)
+        if "success" in run:
+            print(f)
+            print(xl+'Đang cấu hình id: '+str(idfb)+' | '+str(namefb)+'')
+        else:
+            print(d+"Nhập lỗi!")
+            time.sleep(3)
+            os.sys.exit()
+  else:
+        print(d+"Token lỗi! ")
+        time.sleep(3)
+        os.sys.exit()
+  print(f)
+  dem=0
+  t=datetime.datetime.now().strftime("%X")
+  dem=dem+1 
+  while True:
+    getcmt=requests.get('https://traodoisub.com/api/?fields=comment&access_token='+tokentds) 
+    idcmt=getcmt.json()[0]['id']
+    urlcmt='https://graph.facebook.com/'+str(idcmt)+'/comments'
+    datacmt="access_token="+tokenfb
+    cmt=requests.post(urlcmt, data=dâtcmt)
+    nhan=json.loads(requests. get('https://traodoisub.com/api/coin/?type=COMMENT&id='+str(idcmt)+'&access_token='+tokentds).text)
+    id=idlike[0:15]
+    if "success" in nhan:
+                write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m CMT >\x1b[1;95m {id} >\x1b[1;93m +600 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
                 for demtg in range(dl, -1, -1):
                     print(xb+'Làm job tiếp sau -->   '+str(demtg)+'   ',end='\r')
                     time.sleep(1)
