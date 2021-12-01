@@ -8,8 +8,8 @@ t = '\x1b[1;97m'
 vio = '\x1b[1;95m'
 f = """------------------------------------------------------------"""
 banner = """
-\033[1;96m██████╗  [•] Copyright Axeyed Kha (có của Dũng nữa :))
-\033[1;92m██╔══██╗ [•] Tool tính đủ thứ trên đời :v
+\033[1;96m██████╗  [•] Support: Axeyed Kha
+\033[1;92m██╔══██╗ [•] Tool tđs token python
 \033[1;95m██║  ██║ [•] Facebook: Dũng Dũng
 \033[1;92m██║  ██║ [•] Phiên bản v1.0
 \033[1;96m██████╔╝ [•] Zalo: 0936485851
