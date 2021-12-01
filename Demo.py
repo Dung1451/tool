@@ -263,7 +263,7 @@ def tool_cmt_function():
     idcmt=getcmt.json()[0]['id']
     urlcmt='https://graph.facebook.com/'+str(idcmt)+'/comments'
     datacmt="access_token="+tokenfb
-    cmt=requests.post(urlcmt, data=dâtcmt)
+    cmt=requests.post(urlcmt, data=datacmt)
     nhan=json.loads(requests. get('https://traodoisub.com/api/coin/?type=COMMENT&id='+str(idcmt)+'&access_token='+tokentds).text)
     id=idlike[0:15]
     if "success" in nhan:
