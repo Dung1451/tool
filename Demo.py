@@ -265,7 +265,7 @@ def tool_cmt_function():
     datacmt="access_token="+tokenfb
     cmt=requests.post(urlcmt, data=datacmt)
     nhan=json.loads(requests. get('https://traodoisub.com/api/coin/?type=COMMENT&id='+str(idcmt)+'&access_token='+tokentds).text)
-    id=idlike[0:15]
+    id=idcmt[0:15]
     if "success" in nhan:
                 write(f'\x1b[1;93m ==>[{dem}] >\x1b[1;92m {t} >\x1b[1;96m CMT >\x1b[1;95m {id} >\x1b[1;93m +600 >\x1b[1;94m'+str(nhan['data']['xu'])+" Xu")
                 for demtg in range(dl, -1, -1):
